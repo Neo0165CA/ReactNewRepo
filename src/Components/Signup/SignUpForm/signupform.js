@@ -26,35 +26,16 @@ const Errors = {
   required: "This value is required."
 };
 
-const OnSubmitHandler = async event =>{
+const OnSubmitHandler = event =>{
   event.preventDefault();
-  console.log("setFormData", formData)
-
-  try{
-    const signupRequest = await axios.post("http://ec2-3-84-165-185.compute-1.amazonaws.com:8080/SpringJDBCApp-0.0.1-SNAPSHOT/stocks/signup",
-    {
-      "first_name" : fName,
-      "last_name" : lName,
-      email,
-      hashed_password : md5(password)
+  for(let key in formData){
+    if(formData[key] !== ""){
+      if(formData[key] !== undefined){
+        localStorage.setItem(key, formData[key]);
+      }
     }
-    );
-    if(signupRequest){
-      console.log("signup successfully")
-    }
-
-  }catch(err){
-    setNetError(err);
-  }
-
-  // for(let key in formData){
-  //   if(formData[key] !== ""){
-  //     if(formData[key] !== undefined){
-  //       localStorage.setItem(key, formData[key]);
-  //     }
-  //   }
     
-  //   }
+    }
 
 
     props.history.push("/header")

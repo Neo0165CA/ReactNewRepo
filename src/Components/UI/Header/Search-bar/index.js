@@ -12,10 +12,6 @@ const SearchBar = props => {
     const [input, setInput] = useState("");
     const [showList, setShowList] = useState(false);
     const myRef = useRef(null);
-    // const blurClick = () => {
-    //   setShowList(!setShowList);
-    //   setTickerList([]);
-    // };
     let query = "";
 
     

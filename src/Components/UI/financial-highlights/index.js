@@ -26,9 +26,6 @@ const FinancialHighLights = ()=>{
                 setDataErr(true)
               }
 
-              // console.log(highlightsResponse.data);
-              console.log(highlightsData);
-
               
         }catch (err){
 
@@ -37,7 +34,6 @@ const FinancialHighLights = ()=>{
         }
 
         const getFinancialData = (name) =>{
-          // console.log(name)
             return highlightsData.map((item, index) =>{
               let data = Math.round(item[`${name}`]);
               return { [`value${[index]}`] : data }

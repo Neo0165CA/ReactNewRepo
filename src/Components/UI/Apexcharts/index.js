@@ -144,10 +144,6 @@ const CashFlowChart = props => {
       curve: "straight",
       width: 3
     },
-    // title: {
-    //   text: "Past",
-    //   align: "middle"
-    // },
     grid: {
       show: false,
       xaxis: {

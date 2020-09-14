@@ -70,7 +70,6 @@ const Paginationapp = () => {
         const existingArrElements = ["primary_security_ticker", "fiscal_period","end_date","start_date"];
         highlightsData.forEach((item, index) =>{
             for(let key in item){
-                // console.log(key);
                 if(!existingArrElements.includes(key)){
                     if(!headerProps.includes(key))headerProps.push(key);
                 }
@@ -100,7 +99,6 @@ const Paginationapp = () => {
             uiData.push(Object.assign({}, {id : `${headerProps[i]}`}, ...FetchByPropName(headerProps[i])));
         }
         
-        console.log("uiData",uiData, "columns", columns);
 
         setColumnsdata(columns);
         setPagenationdata(uiData);
