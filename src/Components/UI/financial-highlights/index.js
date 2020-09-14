@@ -58,7 +58,7 @@ const FinancialHighLights = () => {
       "end_date",
       "start_date",
     ];
-    for (var i = 0; i < arrkeys.length; i++) {
+    for (let i = 0; i < arrkeys.length; i++) {
       if (existingArrElements.includes(arrkeys[i])) continue;
       dataOne.push(
         Object.assign(

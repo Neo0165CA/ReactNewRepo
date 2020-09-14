@@ -34,5 +34,5 @@ export const NAV_PILL_BUTTON = [
   },
 ];
 
-export let tickerParam = "AAPL";
-export let cikParam = "320193";
+export const tickerParam = "AAPL";
+export const cikParam = "320193";
