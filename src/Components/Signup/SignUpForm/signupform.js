@@ -1,104 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { withRouter, NavLink } from "react-router-dom";
-import md5 from 'md5';
-import _ from 'lodash';
+import _ from "lodash";
 import "./index.modules.scss";
-import axios from 'axios';
+import { Errors, ErrorsValidate } from "../../Utility/constant";
 
-const Signupform = (props)=>{
+const Signupform = (props) => {
+  const [formData, setFormData] = useState("");
+  const { emailErr, passwordErr, lNameErr, fNameErr } = formData;
+  const [netError, setNetError] = useState("");
 
-const [formData, setFormData] = useState("");
-const {fName, lName, email, password, emailErr, passwordErr, lNameErr, fNameErr} = formData;
-const [netError, setNetError] = useState("");
-
-const ErrorsValidate = {
-    namePattern : /^[a-zA-Z ]{4,30}$/,
-    emailPattern :  /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
-} 
-
-const Errors = {
-  email: "Please enter a valid email.",
-  password: "At least 8 charecters.",
-  fName:
-    "At least 4 charecters.",
-  lName:
-    "At least 4 charecters.",
-  required: "This value is required."
-};
-
-const OnSubmitHandler = event =>{
-  event.preventDefault();
-  for(let key in formData){
-    if(formData[key] !== ""){
-      if(formData[key] !== undefined){
-        localStorage.setItem(key, formData[key]);
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    for (let key in formData) {
+      if (_.isEmpty(formData[key])) {
+        if (formData[key] !== undefined) {
+          localStorage.setItem(key, formData[key]);
+        }
       }
     }
-    
+    props.history.push("/header");
+  };
+
+  const inputHandleChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value, [`${name}Err`]: "" });
+  };
+
+  const setFormErr = (name, type) => {
+    setFormData({ ...formData, [`${name}Err`]: type ? Errors[type] : "" });
+  };
+
+  const handleInputBlur = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    if (_.isEmpty(value)) {
+      setFormErr(name, "required");
+    } else {
+      switch (name) {
+        case "fName":
+          ErrorsValidate.namePattern.test(value)
+            ? setFormErr(name, "")
+            : setFormErr(name, "fName");
+          break;
+        case "lName":
+          ErrorsValidate.namePattern.test(value)
+            ? setFormErr(name, "")
+            : setFormErr(name, "lName");
+          break;
+        case "email":
+          ErrorsValidate.emailPattern.test(value)
+            ? setFormErr(name, "")
+            : setFormErr(name, "email");
+          break;
+        case "password":
+          value.length < 8
+            ? setFormErr(name, "password")
+            : setFormErr(name, "");
+          break;
+        default:
+      }
     }
+  };
 
+  const linkedInclickHandler = (event) => {
+    console.log("not available yet!");
+  };
 
-    props.history.push("/header")
-}
-const inputHandleChange = event => {
-  event.preventDefault();
-  const {name, value} = event.target;
-  setFormData({...formData, [name] : value,[`${name}Err`]: "" });
-
-}
-
-const setFormErr = (name,type)=>{
-
-  setFormData({ ...formData,  [`${name}Err`]: type ? Errors[type] : "" });
-}
-
-
-const handleInputBlur = event => {
-  event.preventDefault();
-  const { name, value } = event.target;
-  if (value.trim() === "") {
-    setFormErr(name, "required");
-  }
-   else {
-  switch (name) {
-    case "fName":
-      ErrorsValidate.namePattern.test(value)
-        ? setFormErr(name,"")
-        : setFormErr(name, "fName");
-      break;
-    case "lName":
-      ErrorsValidate.namePattern.test(value)
-        ? setFormErr(name,"")
-        : setFormErr(name,"lName");
-      break;
-
-    case "email":
-      ErrorsValidate.emailPattern.test(value)
-        ? setFormErr(name,"")
-        : setFormErr(name, "email");
-      break;
-    case "password":
-      value.length < 8
-        ? setFormErr(name,"password")
-        : setFormErr(name," ") ;
-      break;
-    default:
-      break;
-  }
-}
-};
-
-
-
-
-const linkedInclickHandler = (event) => {
-  console.log("not available yet!");
-}
-
-
-
-    return (
-      <div className="login-space">
+  return (
+    <div className="login-space">
       <div className="login-form sign-up mx-auto">
         <div className="card border-secondary">
           <div className="card-header">
@@ -106,11 +76,13 @@ const linkedInclickHandler = (event) => {
               <span> Sign Up </span>
             </h3>
           </div>
-      
           <div className="card-body login-main-cont">
             <p className="rcmt-txt"> Recommended! </p>
             <div className="form-group">
-              <button className="btn linkedin-btn" onClick={linkedInclickHandler}>
+              <button
+                className="btn linkedin-btn"
+                onClick={linkedInclickHandler}
+              >
                 <img
                   src="/images/logo-linkedin.svg"
                   className="linkedin-icon"
@@ -127,7 +99,7 @@ const linkedInclickHandler = (event) => {
             <form className="form signup-form-cont">
               <hr className="divided" />
               <p className="rcmt-txt"> Don’t have a LinkedIn? </p>
-      
+
               <div className="form-group">
                 <input
                   type="text"
@@ -141,7 +113,6 @@ const linkedInclickHandler = (event) => {
                 />
                 <div className="errorMsg">{fNameErr}</div>
               </div>
-      
               <div className="form-group">
                 <input
                   type="text"
@@ -155,7 +126,6 @@ const linkedInclickHandler = (event) => {
                 />
                 <div className="errorMsg"> {lNameErr} </div>
               </div>
-      
               <div className="form-group">
                 <input
                   type="email"
@@ -163,19 +133,19 @@ const linkedInclickHandler = (event) => {
                   className="input-bx wth"
                   onChange={inputHandleChange}
                   onBlur={handleInputBlur}
-                  id="inputEmail3"
+                  id="inputEmail"
                   placeholder="Email"
                   required=""
                 />
                 <div className="errorMsg">{emailErr}</div>
               </div>
-      
+
               <div className="form-group">
                 <input
                   type="password"
                   name="password"
                   className="input-bx wth"
-                  id="inputPassword3"
+                  id="inputPassword"
                   onChange={inputHandleChange}
                   onBlur={handleInputBlur}
                   placeholder="Password"
@@ -184,11 +154,10 @@ const linkedInclickHandler = (event) => {
                 <div className="errorMsg">{passwordErr}</div>
                 {/* <div className="errorMsg-exist">{passwordErr}</div> */}
               </div>
-      
               <div className="form-group">
                 <button
                   type="button"
-                  onClick={OnSubmitHandler}
+                  onClick={onSubmitHandler}
                   className="btn login-btn font-weight-bold"
                 >
                   Sign Up
@@ -196,7 +165,10 @@ const linkedInclickHandler = (event) => {
               </div>
               <p className="botm-cont ml-3">
                 Already have an account?{" "}
-                <NavLink exact to="/login"> Sign in to your account! </NavLink>
+                <NavLink exact to="/login">
+                  {" "}
+                  Sign in to your account!{" "}
+                </NavLink>
               </p>
               <hr className="divided did2" />
               <p className="botm-cont botm-cont-2 text-center">
@@ -214,8 +186,8 @@ const linkedInclickHandler = (event) => {
           </div>
         </div>
       </div>
-      </div>
-      );
-}
+    </div>
+  );
+};
 
 export default withRouter(Signupform);

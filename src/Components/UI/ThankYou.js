@@ -1,12 +1,15 @@
-import React from 'react';
-import '../../App.css';
+import React from "react";
+import "../../App.css";
 import { withRouter, NavLink } from "react-router-dom";
 
-function Thankyou (props) {
+function Thankyou(props) {
   return (
     <div className="Appcomponent">
-     Thank you !&nbsp;
-     <NavLink exact to="/"> Home! </NavLink>
+      Thank you !&nbsp;
+      <NavLink exact to="/">
+        {" "}
+        Home!{" "}
+      </NavLink>
     </div>
   );
 }

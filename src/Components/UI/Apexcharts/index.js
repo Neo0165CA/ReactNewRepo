@@ -1,36 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./index.modules.scss";
+import { NAV_PILL_BUTTON } from '../../Utility/constant';
+import { url } from '../../Utility/config';
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import Chart from "react-apexcharts";
-import _ from "lodash";
+
 const CashFlowChart = props => {
   const [cashFlowData, setCashFlowData] = useState([]);
   const [index, setIndex] = useState(1);
   const [toolData, setToolData] = useState("Operating Activities");
   let tickerParam = "AAPL";
-  const NAV_PILL_BUTTON = [
-    {
-      id: 1,
-      name: "ncfoa",
-      text: "Operating Activities"
-    },
-    {
-      id: 2,
-      name: "ncffa",
-      text: "Financing Activities"
-    },
-    {
-      id: 3,
-      name: "ncfia",
-      text: "Investing Activities"
-    },
-    {
-      id: 4,
-      name: "fcf",
-      text: "Free cash flow"
-    }
-  ];
+
   const fetchIncomeData = async () => {
     let tag;
     if (index === 1) {
@@ -46,7 +27,7 @@ const CashFlowChart = props => {
       tag = "freecashflow";
     }
     const responseCashChart = await axios.get(
-      `http://ec2-3-84-165-185.compute-1.amazonaws.com:8080/SpringJDBCApp-0.0.1-SNAPSHOT/stocks/cashflowgraph?ticker=${tickerParam}`
+      `${url}:8080/SpringJDBCApp-0.0.1-SNAPSHOT/stocks/cashflowgraph?ticker=${tickerParam}`
     );
     const cashChartResponse = responseCashChart.data.reverse();
     const uiCashChartData = cashChartResponse.map(item => {
@@ -58,7 +39,7 @@ const CashFlowChart = props => {
     if (index === 4) {
       try {
         const responseForecast = await axios.get(
-          `http://ec2-35-175-187-45.compute-1.amazonaws.com/revenue/forecast/ticker=${tickerParam}`
+          `${url}/revenue/forecast/ticker=${tickerParam}`
         );
         let cashChartInfo= typeof(responseForecast.data) === "string" ? JSON.parse(responseForecast.data.replace(/NaN/g, 0)) : responseForecast.data
         const uiFutureData = [
@@ -102,6 +83,10 @@ const CashFlowChart = props => {
   useEffect(() => {
     fetchIncomeData();
   }, [index]);
+
+  // const setIndexAndToolData = {
+
+  // }
   const handleIncomeChart = async event => {
     const { name } = event.target;
     switch (name) {
@@ -266,7 +251,6 @@ const CashFlowChart = props => {
                 }`}
                 name={item.name}
                 onClick={handleIncomeChart}
-                // disabled={isApiLoading === "analysis-loading" ? true : false}
               >
                 {item.text}
               </button>

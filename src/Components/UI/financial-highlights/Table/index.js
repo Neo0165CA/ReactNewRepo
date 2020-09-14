@@ -4,8 +4,6 @@ import Table from "react-bootstrap/Table";
 
 const FinancialTable = ({ columns, data }) => {
 
-        //  console.log("columns3", columns)
-
     const {
         getTableProps,
         getTableBodyProps,

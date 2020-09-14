@@ -1,40 +1,24 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import axios from "axios";
-import md5 from "md5";
+import { Errors, ErrorsValidate } from '../Utility/constant';
+import _ from 'lodash';
 import "./index.modules.scss";
 
 const Signinform = (props) => {
   const [formData, setFormData] = useState("");
   const { emailErr, passwordErr } = formData;
 
-  const ErrorsValidate = {
-    namePattern: /^[a-zA-Z ]{4,30}$/,
-    emailPattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
-  };
-
-  const Errors = {
-    email: "Please enter a valid email.",
-    password: "At least 8 charecters.",
-    required: "This value is required.",
-  };
-
-  const OnSubmitHandler = (event) => {
+  const onSubmitHandler = (event) => {
     event.preventDefault();
-
-
-
-      const storedeEmail = localStorage.getItem('email');
-      const storedPw = localStorage.getItem('password');
-
-      if(formData.email === storedeEmail && formData.password === storedPw){
-          props.history.push("/thankyou")
-      }else{
-          alert("User is not exist");
-      }
-
-
+    const storedeEmail = localStorage.getItem("email");
+    const storedPw = localStorage.getItem("password");
+    if (formData.email === storedeEmail && formData.password === storedPw) {
+      props.history.push("/thankyou");
+    } else {
+      console.log("User is not exist");
+    }
   };
+
   const inputHandleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
@@ -48,7 +32,7 @@ const Signinform = (props) => {
   const handleInputBlur = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    if (value.trim() === "") {
+    if (_.isEmpty(value)) {
       setFormErr(name, "required");
     } else {
       switch (name) {
@@ -60,10 +44,9 @@ const Signinform = (props) => {
         case "password":
           value.length < 8
             ? setFormErr(name, "password")
-            : setFormErr(name, " ");
+            : setFormErr(name, "");
           break;
         default:
-          break;
       }
     }
   };
@@ -81,7 +64,6 @@ const Signinform = (props) => {
               <span> Sign In </span>
             </h3>
           </div>
-
           <div className="card-body login-main-cont">
             <p className="rcmt-txt"> Recommended! </p>
             <div className="form-group">
@@ -105,7 +87,6 @@ const Signinform = (props) => {
             <form className="form signup-form-cont">
               <hr className="divided" />
               <p className="rcmt-txt"> Don’t have a LinkedIn? </p>
-
               <div className="form-group">
                 <input
                   type="email"
@@ -113,32 +94,29 @@ const Signinform = (props) => {
                   className="input-bx wth"
                   onChange={inputHandleChange}
                   onBlur={handleInputBlur}
-                  id="inputEmail3"
+                  id="inputEmail"
                   placeholder="Email"
                   required=""
                 />
                 <div className="errorMsg">{emailErr}</div>
               </div>
-
               <div className="form-group">
                 <input
                   type="password"
                   name="password"
                   className="input-bx wth"
-                  id="inputPassword3"
+                  id="inputPassword"
                   onChange={inputHandleChange}
                   onBlur={handleInputBlur}
                   placeholder="Password"
                   required=""
                 />
                 <div className="errorMsg">{passwordErr}</div>
-                {/* <div className="errorMsg-exist">{passwordErr}</div> */}
               </div>
-
               <div className="form-group">
                 <button
                   type="button"
-                  onClick={OnSubmitHandler}
+                  onClick={onSubmitHandler}
                   className="btn login-btn font-weight-bold"
                 >
                   Sign In
