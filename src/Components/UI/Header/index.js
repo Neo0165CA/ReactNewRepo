@@ -3,7 +3,13 @@ import { withRouter } from "react-router-dom";
 import SearchBar from "./Search-bar/index";
 
 function Header(props) {
-  return <SearchBar className="showTab authSearchBar" />;
+  let Auth = "Login";
+  return (
+    <div>
+      <span>{Auth}</span>
+      <SearchBar className="showTab authSearchBar" />
+    </div>
+  );
 }
 
 export default withRouter(Header);

@@ -1,23 +1,37 @@
 import React, { useState } from "react";
 import { withRouter, NavLink } from "react-router-dom";
-import _ from "lodash";
 import "./index.modules.scss";
+import axios from 'axios';
+import md5 from 'md5';
+import _ from "lodash";
+import { url } from '../../Utility/config';
 import { Errors, ErrorsValidate } from "../../Utility/constant";
 
 const Signupform = (props) => {
+
   const [formData, setFormData] = useState("");
-  const { emailErr, passwordErr, lNameErr, fNameErr } = formData;
+  const { fName, lName, email, password, emailErr, passwordErr, lNameErr, fNameErr } = formData;
   const [netError, setNetError] = useState("");
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async event => {
     event.preventDefault();
-    for (let key in formData) {
-      if (_.isEmpty(formData[key])) {
-        if (formData[key] !== undefined) {
-          localStorage.setItem(key, formData[key]);
-        }
+    try{
+      const signupRequest = await axios.post(`${url}:8080/SpringJDBCApp-0.0.1-SNAPSHOT/stocks/signup`,
+      {
+        "first_name" : fName,
+        "last_name" : lName,
+        email,
+        hashed_password : md5(password)
       }
+      );
+      if(signupRequest){
+        console.log("signup successfully")
+      }
+  
+    }catch(err){
+      setNetError(err);
     }
+
     props.history.push("/header");
   };
 
@@ -59,6 +73,7 @@ const Signupform = (props) => {
             : setFormErr(name, "");
           break;
         default:
+          return null;
       }
     }
   };

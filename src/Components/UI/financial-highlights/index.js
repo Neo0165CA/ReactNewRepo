@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
-import _ from "lodash";
 import axios from "axios";
-import FinancialTable from "./Table/index";
 import { withRouter } from "react-router-dom";
+import _ from "lodash";
+import FinancialTable from "./Table/index";
 import { url } from "../../Utility/config";
 import { tickerParam, cikParam } from "../../Utility/constant";
 
@@ -51,15 +51,15 @@ const FinancialHighLights = () => {
     });
 
     const dataOne = [];
+    const dataOne2 = [];
+    const existingArrElements = [
+      "primary_security_ticker",
+      "fiscal_period",
+      "end_date",
+      "start_date",
+    ];
     for (var i = 0; i < arrkeys.length; i++) {
-      if (
-        arrkeys[i] === "primary_security_ticker" ||
-        arrkeys[i] === "fiscal_period" ||
-        arrkeys[i] === "end_date" ||
-        arrkeys[i] === "start_date"
-      )
-        continue;
-
+      if (existingArrElements.includes(arrkeys[i])) continue;
       dataOne.push(
         Object.assign(
           {},
@@ -68,6 +68,8 @@ const FinancialHighLights = () => {
         )
       );
     }
+
+
 
     setFinancialHighlights(dataOne);
     setColumninfo(columns);

@@ -1,22 +1,45 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import { Errors, ErrorsValidate } from '../Utility/constant';
-import _ from 'lodash';
 import "./index.modules.scss";
+import axios from 'axios';
+import md5 from 'md5';
+import _ from 'lodash';
+import { url } from '../Utility/config';
+import { Errors, ErrorsValidate } from '../Utility/constant';
 
 const Signinform = (props) => {
   const [formData, setFormData] = useState("");
   const { emailErr, passwordErr } = formData;
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async event => {
     event.preventDefault();
-    const storedeEmail = localStorage.getItem("email");
-    const storedPw = localStorage.getItem("password");
-    if (formData.email === storedeEmail && formData.password === storedPw) {
-      props.history.push("/thankyou");
-    } else {
-      console.log("User is not exist");
+
+    try{
+      const signInResponse = await axios({
+        method : "POST",
+        url : `${url}:8080/SpringJDBCApp-0.0.1-SNAPSHOT/stocks/login`,
+        data : {
+          email : formData.email,
+          hashed_password : md5(formData.password)
+        }
+    
+      });
+  
+      if(signInResponse){
+  
+        console.log("sign-in successfully", signInResponse.data.result.user_id)
+        let minutes = 60;
+        const expirationDate = new Date(new Date().getTime() + minutes *60 * 1000); 
+        localStorage.setItem('userId',signInResponse.data.result.user_id);
+        localStorage.setItem('expirationDate', expirationDate);
+  
+      }
+  
+  
+    }catch(err){
+  
     }
+    props.history.push("/header");
   };
 
   const inputHandleChange = (event) => {
@@ -47,6 +70,7 @@ const Signinform = (props) => {
             : setFormErr(name, "");
           break;
         default:
+          return null;
       }
     }
   };

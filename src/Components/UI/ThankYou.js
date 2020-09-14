@@ -1,6 +1,6 @@
 import React from "react";
-import "../../App.css";
 import { withRouter, NavLink } from "react-router-dom";
+import "../../App.css";
 
 function Thankyou(props) {
   return (

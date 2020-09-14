@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { withRouter, Redirect, NavLink } from "react-router-dom";
-import _ from "lodash";
-import { url } from "../../../Utility/config";
 import axios from "axios";
+import _ from "lodash";
 import "./index.modules.scss";
+import { url } from "../../../Utility/config";
 
 const SearchBar = (props) => {
   const [tickerList, setTickerList] = useState([]);

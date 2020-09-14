@@ -1,14 +1,14 @@
 import React from 'react';
-import Signup from './Components/Signup/signup';
-import Financialhightlights from './Components/UI/financial-highlights/index'
 import { Route, Switch, withRouter,Redirect } from 'react-router-dom';
+import Apexcharts from './Components/UI/Apexcharts/index';
+import './App.css';
+import Financialhightlights from './Components/UI/financial-highlights/index'
+import Signup from './Components/Signup/signup';
 import Signin from './Components/Signin/signin';
 import Header from './Components/UI/Header/index';
-import Apexcharts from './Components/UI/Apexcharts/index';
 import Paginationapp from './Components/UI/financial-highlights/PaginatioApp/PaginationApp';
 import SignupSuccess from './Components/UI/SignupSuccess/Signupsuccess';
 import Thankyou from './Components/UI/ThankYou';
-import './App.css';
 
 function App() {
 

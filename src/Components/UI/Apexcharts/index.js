@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
+import axios from "axios";
+import Chart from "react-apexcharts";
 import "./index.modules.scss";
 import { NAV_PILL_BUTTON } from '../../Utility/constant';
 import { url } from '../../Utility/config';
-import axios from "axios";
-import { withRouter } from "react-router-dom";
-import Chart from "react-apexcharts";
 
 const CashFlowChart = props => {
   const [cashFlowData, setCashFlowData] = useState([]);
@@ -84,27 +84,29 @@ const CashFlowChart = props => {
     fetchIncomeData();
   }, [index]);
 
-  // const setIndexAndToolData = {
+  const incomeObj = {
+    1: "netcashfromoperatingactivities",
+    2: "netcashfromfinancingactivities",
+    3: "netcashfrominvestingactivities",
+    4: "freecashflow",
+  };
 
-  // }
+  const updatedIncomeChart = index =>{
+    setIndex(index);
+    setToolData(incomeObj[index])
+  }
+
   const handleIncomeChart = async event => {
     const { name } = event.target;
     switch (name) {
       case "ncffa":
-        setIndex(2);
-        setToolData("Financing Activities");
-        break;
+        return updatedIncomeChart(2);
       case "ncfia":
-        setIndex(3);
-        setToolData("Investing Activities");
-        break;
+        return updatedIncomeChart(3);
       case "fcf":
-        setIndex(4);
-        setToolData("Free cash flow");
-        break;
+        return updatedIncomeChart(4);
       default:
-        setIndex(1);
-        setToolData("Operating Activities");
+        return updatedIncomeChart(1);
     }
   };
   const seriesCashFlow = [
