@@ -1,0 +1,19 @@
+@import "../../stylesheet/base.scss";
+
+@include for-mobile-max {
+  .modal-dialog {
+    margin: 30px auto; 
+  }
+}
+
+@include for-mobile-600-down {
+  .modal-dialog {
+    margin: 0 auto;
+  }
+}
+
+@include for-mobile-567 {
+  .modal-dialog {
+    margin: 0 auto;
+  }
+}

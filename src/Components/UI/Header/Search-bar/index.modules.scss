@@ -1,0 +1,107 @@
+@import "../../../../stylesheet/base.scss";
+.mainSearchWrapper {
+  .Search-top {
+    padding: 0 0 0 16px;
+    position: relative;
+    width: 100%;
+    input.form-control.searchInput {
+      background: transparent;
+      border: none;
+      flex-grow: 1;
+      margin: 0 !important;
+      padding: 0 0 0 10px;
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+  .searchWrapper {
+    @include flex(flex, center, row, flex-start);
+    flex-grow: 1;
+  }
+  .search-list {
+    @include flex(flex, flex-start, column, left);
+    background: $f-bg-white;
+    box-shadow: 0 2px 4px 0 $tras-gray;
+    height: auto;
+    left: 0;
+    padding-right: 0;
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    z-index: 100;
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: $c-gray;
+      border-radius: 10px;
+    }
+    .search-ticker {
+      margin: 0;
+      max-height: 200px;
+      overflow: auto;
+      padding: 0;
+      width: 100%;
+      .search-link:last-child a {
+        border-bottom: none;
+      }
+      .search-link {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        a {
+          @include font($f-14, $f-color-light-black, $font-openSans, $font-wtN);
+          border-bottom: 1px solid $bg-color-gray2;
+          display: inline-block;
+          padding: 10px 20px;
+          width: 100%;
+        }
+        a:hover {
+          background: $gray-light2;
+        }
+      }
+      .search-link.active a,
+      .search-link:hover {
+        background: $gray-light2;
+      }
+    }
+    .search-response {
+      @include font($f-14, $f-color-light-black, $font-openSans, $font-wtN);
+      padding: 10px;
+      width: 100%;
+    }
+    .searched-list-without-data {
+      @include font($f-16, $f-color-g, $font-robotoR, $font4);
+      line-height: 140%;
+      padding-bottom: 3px;
+      padding-top: 3px;
+      text-decoration: none;
+      width: 100%;
+    }
+  }
+  @include for-desktop-1200-to-1380 {
+    .Search-top {
+      width: 30vw;
+    }
+  }
+  @include for-mobile-768-down {
+    .Search-top {
+      margin: 0 0 0 20px;
+    }
+  }
+  @include for-mobile-max {
+    .mr-auto {
+      padding: 0;
+    }
+    .Search-top {
+      margin: 0;
+      padding: 0 10px;
+      width: 30vw;
+      input.form-control {
+        flex-grow: 1;
+      }
+    }
+  }
+}

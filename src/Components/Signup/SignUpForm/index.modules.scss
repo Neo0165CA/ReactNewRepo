@@ -1,0 +1,173 @@
+@import "../../../stylesheet/base.scss";
+
+.login-form.sign-up {
+  background: $white;
+  border-radius: 7px;
+  margin: 0 auto;
+  padding: 15px 32px;
+  width: 430px;
+  cursor: pointer;
+  
+  .signup-form-cont {
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+      .errorMsg {
+        position: absolute;
+        @include font($f-11, $red, $font-openSans, $f-weight-5);
+      }
+      .errorMsg-exist {
+        margin: 10px 0;
+        padding: 0 5px;
+        @include font($f-12, $red, $font-openSans, $f-weight-6);
+      }
+    }
+  }
+  .card {
+    background: $tranpr;
+    border: 1px solid $tranpr !important;
+    .card-header {
+      background: $tranpr;
+      border: 0px solid;
+      margin: 0px;
+      padding: 0px;
+      .login-tit {
+        margin: 0 0 20px;
+        @include font($f-27, $f-color-dark-black, $font-futura, $font-wtB);
+        span {
+          display: inline-block;
+          margin-top: 22px;
+        }
+        .login-close {
+          background: none;
+          border: 0px solid;
+          float: $right;
+          font-size: initial;
+          padding: 2px 0 0;
+          img {
+            height: 14px;
+            width: 14px;
+          }
+        }
+      }
+    }
+    .login-main-cont {
+      padding: 0;
+      margin: 0;
+      .divided {
+        border-color: $bg-color-gray2;
+        margin: 30px 0 24px;
+      }
+      .divided.did2 {
+        margin: 24px 0 20px;
+      }
+      .linkedin-btn {
+        background: $f-bg-blue;
+        border-radius: 4px;
+        border: 1px solid $f-bg-blue;
+        display: inline-block;
+        padding: 20px 0;
+        text-align: $center;
+        width: 100%;
+        .linkedin-icon {
+            display: inline-block
+        }
+        .linkedin-icon-blue {
+            display:none;
+        }
+        @include font($f-16, $f-bg-white, $font-openSans, $font7);
+        span {
+          margin-left: 17px;
+        }
+      }
+      .input-bx {
+        border-radius: 4px;
+        border: solid 1px $f-color-8a;
+        opacity: 1;
+        outline: none;
+        padding: 14px 20px;
+        width: 100%;
+        @include font($f-14, $f-color-dark-black, $font-openSans, $font-wtN);
+      }
+      .login-btn {
+        background: $f-bg-blue;
+        border-radius: 4px;
+        border: 1px solid $f-bg-blue;
+        display: inline-block;
+        padding: 16px 0;
+        text-align: $center;
+        width: 100%;
+        @include font($f-16, $f-bg-white, $font-openSans, $font7);
+      }
+      .rcmt-txt {
+        @include font($f-14, $f-color-dark-black, $font-openSans, $font-wtN);
+      }
+    }
+    .botm-cont {
+      @include font($f-14, $f-color-dark-black, $font-openSans, $font-wtN);
+      a.a-link {
+        @include font($f-14, $f-color-blue, $font-openSans, $font6);
+      }
+    }
+  }
+
+  @include for-mobile-max {
+    border-radius: 0px;
+    border: 0px solid;
+    padding: 30px 5px;
+    width: 100%;
+    .card {
+      .card-header {
+        .login-tit {
+          margin: 0 0 24px;
+        }
+        .login-tit {
+          span {
+            margin: 0;
+          }
+        }
+      }
+      .login-main-cont {
+        .linkedin-btn {
+          padding: 14px 0;
+        }
+        .divided {
+          margin: 24px 0;
+        }
+      }
+    }
+  }
+}
+
+.input-bx {
+  &::placeholder {
+    color: $f-color-light-black;
+    opacity: 0.7;
+  }
+}
+
+@include for-mobile-max {
+.modal-dialog {
+    margin: 30px auto;
+    .login-form.sign-up {
+      min-height: 100vh;
+      padding: 30px 20px;
+    }
+  }
+  .login-space {
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@include for-mobile-600-down {
+.modal-dialog {
+    margin: 0 auto;
+  }
+}
+
+@include for-mobile-567 {
+  .modal-dialog {
+    margin: 0 auto;
+  }
+}

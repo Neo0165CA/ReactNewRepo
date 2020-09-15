@@ -1,0 +1,510 @@
+@mixin open-font() {
+  font-family: $font-openSans;
+  font-size: $f-size-16;
+  font-style: $f-style;
+  font-weight: $f-weight-4;
+}
+
+@mixin font($size, $color, $family, $weight) {
+  font-size: $size;
+  color: $color;
+  font-family: $family;
+  font-weight: $weight;
+}
+
+@mixin btn-reset() {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  @include open-font;
+  border-radius: 4px;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  height: 40px;
+  letter-spacing: 0.03em;
+  line-height: 120%;
+  margin: 0;
+  padding: 11px 20px;
+  text-decoration: none;
+  transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+}
+
+@mixin btn-disable() {
+  cursor: default;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+@mixin color-hover-focus {
+  background: $f-color-light-gray;
+  color: $f-color-white;
+  &:hover,
+  &:focus {
+    background: $f-color-light-gray;
+    color: $f-color-white;
+  }
+}
+@mixin help-txt() {
+  line-height: 140%;
+  font-weight: $f-weight-4;
+  font-size: $f-16;
+}
+@mixin outline-none {
+  outline: $f-outline;
+}
+@mixin bg-img-gradient {
+  background-image: linear-gradient(to bottom, $f-bg-gradient, $f-bg-white);
+}
+@mixin card {
+  background-color: $white;
+  border-radius: 4px;
+  border: 1px solid $gray-light2;
+}
+/* faq*/
+@mixin fqa {
+  .faq {
+    background: $f-bg-light-white;
+    border-top: 1px solid $f-br-color-light-gray;
+    padding: 30px 15px;
+    h4 {
+      text-transform: none;
+      text-align: $center;
+      margin-bottom: 15px;
+      line-height: 120%;
+      font-weight: 300;
+      font-size: $f-size-22;
+    }
+    .faq-cta {
+      text-align: $center;
+      margin-top: 30px;
+      a.sc-outline-btn--cool-gray {
+        width: 150px;
+        text-align: $center;
+        padding: 10px 0;
+        margin: 0 auto;
+        justify-content: center;
+        height: auto;
+        color: $f-bg-mid-black;
+        box-shadow: inset 0 0 0 1px $f-bg-mid-gray;
+        background: transparent;
+      }
+    }
+  }
+
+  @include for-mobile-max {
+    .faq .faq-cta {
+      margin-top: 15px;
+    }
+  }
+
+  @include for-tablet-min {
+    .faq {
+      padding: 60px 0;
+      h4 {
+        font-size: $f-size-28;
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .faq-list {
+    margin-bottom: 15px;
+    .faq-item-wrapper {
+      -moz-box-shadow: 0 2px 3px 0 rgba(51, 51, 51, 0.2);
+      -webkit-box-shadow: 0 2px 3px 0 rgba(51, 51, 51, 0.2);
+      background: $white;
+      border-radius: 0;
+      box-shadow: 0 2px 3px 0 rgba(51, 51, 51, 0.2);
+      margin-bottom: 10px;
+    }
+    .faq--a {
+      color: $f-color-mid-black;
+      font-family: $open-font;
+      font-size: $f-size-16;
+      font-weight: $f-weight-4;
+      line-height: 140%;
+      margin: 0;
+      p {
+        margin: 0 0 15px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .faq--q {
+      box-sizing: border-box;
+      color: $f-color-mid-light-blue;
+      font-size: $f-size-22;
+      font-weight: $f-weight-3;
+      line-height: 120%;
+      margin: 0;
+      padding: 0 0 5px;
+      width: 100%;
+    }
+    .q-how-it-works {
+      box-sizing: border-box;
+      color: $f-color-orange;
+      font-family: $open-font;
+      font-size: $f-size-22;
+      font-weight: $f-weight-3;
+      line-height: 120%;
+      margin: 0;
+      padding: 0 0 5px;
+      width: 100%;
+      @include for-mobile-max {
+        font-size: $f-size-18;
+        line-height: 120%;
+      }
+    }
+  }
+  @include for-tablet-min {
+    .faq-list {
+      margin: 0 auto;
+      width: 708px;
+      article {
+        padding: 30px;
+      }
+    }
+  }
+}
+@mixin text-overflow($width) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: $width;
+}
+@mixin box-wrapper() {
+  border: 1px solid $border;
+  border-radius: 4px;
+  @include for-mobile-max {
+    border-color: $border;
+    border-radius: none;
+    border-style: solid;
+    border-width: 0 0 1px;
+  }
+}
+/*Media Query*/
+
+@mixin for-mobile-mid-min {
+  @media only screen and (min-width: $mg-mobile-mid) {
+    @content;
+  } /*min-width:568px*/
+}
+
+@mixin for-tablet-min {
+  @media only screen and (min-width: $mg-tablet-min) {
+    @content;
+  } /*min-width:768px*/
+}
+
+@mixin for-tablet-up-mid {
+  @media only screen and (min-width: $mg-tablet-mid) {
+    @content;
+  } /*min-width:992px*/
+}
+
+@mixin for-tablet-up-min {
+  @media only screen and (min-width: $mg-tablet-max) {
+    @content;
+  } /*min-width:1024px*/
+}
+
+@mixin for-desktop-up-min {
+  @media only screen and (min-width: $mg-desktop-mid) {
+    @content;
+  } /*min-width:1200px*/
+}
+
+@mixin for-desktop-max-in {
+  @media only screen and (max-width: $mg-desktop-max-up) {
+    @content;
+  } /*max-width:1400px*/
+}
+
+@mixin for-desktop-max-up {
+  @media only screen and (min-width: $mg-desktop-max-up) {
+    @content;
+  } /*min-width:1400px*/
+}
+
+@mixin for-mobile-810-up {
+  @media only screen and (min-width: $mg-tablet-810) {
+    @content;
+  } /*min-width: 810px */
+}
+@mixin for-mobile-600 {
+  @media only screen and (min-width: $mg-mobile-600) {
+    @content;
+  } /*min-width: 600px */
+}
+@mixin for-mobile-415 {
+  @media only screen and (min-width: $mg-mobile-415) {
+    @content;
+  } /*min-width:415px*/
+}
+
+@mixin for-mobile-414-up {
+  @media only screen and (min-width: $mg-mobile-414) {
+    @content;
+  } /*min-width:414px*/
+}
+@mixin for-mobile-375-up {
+  @media only screen and (min-width: $mg-mobile-375) {
+    @content;
+  } /*min-width:375px*/
+}
+
+@mixin for-mobile-375-down {
+  @media only screen and (max-width: $mg-mobile-375) {
+    @content;
+  } /*max-width:375px*/
+}
+
+@mixin for-big-Desk-1920 {
+  @media only screen and (max-width: $mg-Bigdesktop-max-up) {
+    @content;
+  } /*max-width:1920px*/
+}
+
+@mixin for-tablet-1023 {
+  @media only screen and (max-width: $mg-tablet-1023) {
+    @content;
+  } /*max-width:1023px*/
+}
+@mixin for-mobile-321-down {
+  @media only screen and (max-width: $mg-mobile-321) {
+    @content;
+  } /*max-width:321px*/
+}
+@mixin for-mobile-374-down {
+  @media only screen and (max-width: $mg-mobile-374) {
+    @content;
+  } /*max-width:374px*/
+}
+
+@mixin for-mobile-475-down {
+  @media only screen and (max-width: $mg-mobile-475) {
+    @content;
+  } /*max-width:374px*/
+}
+
+@mixin for-mobile-415-down {
+  @media only screen and (max-width: $mg-mobile-415) {
+    @content;
+  } /*max-width:414px*/
+}
+@mixin for-mobile-max {
+  @media only screen and (max-width: $mg-mobile-max) {
+    @content;
+  } /*max-width: 767px*/
+}
+
+@mixin for-mobile-992-max {
+  @media only screen and (max-width: $mg-tablet-mid) {
+    @content;
+  } /*max-width: 992px*/
+}
+
+@mixin for-desktop-up {
+  @media only screen and (max-width: $mg-desktop-mid) {
+    @content;
+  } /*max-width:1200px*/
+}
+@mixin for-mobile-576 {
+  @media only screen and (max-width: $mg-mobile-576) {
+    @content;
+  } /*max-width: 576px */
+}
+
+@mixin for-mobile-567 {
+  @media only screen and (max-width: $mg-mobile-567) {
+    @content;
+  } /*max-width: 567px */
+}
+
+@mixin for-mobile-600-down {
+  @media only screen and (max-width: $mg-mobile-600) {
+    @content;
+  } /*max-width: 600px */
+}
+
+@mixin for-mobile-768-down {
+  @media only screen and (max-width: $mg-mobile-768) {
+    @content;
+  } /*max-width: 768px */
+}
+
+@mixin for-mobile-481-down {
+  @media only screen and (max-width: $mg-mobile-481) {
+    @content;
+  } /*max-width:481px*/
+}
+
+@mixin for-mobile-768-to-1199 {
+  @media only screen and (min-width: $mg-tablet-min) and (max-width: $mg-desktop-1199) {
+    @content;
+  }
+}
+
+@mixin for-mobile-1024-to-1199 {
+  @media only screen and (min-width: $mg-tablet-max) and (max-width: $mg-desktop-1199) {
+    @content;
+  }
+}
+@mixin for-mobile-769-to-1199 {
+  @media only screen and (min-width: $mg-tablet-769) and (max-width: $mg-desktop-1199) {
+    @content;
+  }
+}
+@mixin for-mobile-768-to-1200 {
+  @media only screen and (min-width: $mg-tablet-min) and (max-width: $mg-desktop-mid) {
+    @content;
+  }
+}
+@mixin for-desktop-1200-to-1380 {
+  @media only screen and (min-width: $mg-desktop-mid) and (max-width: $mg-desktop-1380) {
+    @content;
+  }
+}
+
+@mixin for-big-Desk-1921-t0-3000 {
+  @media only screen and (min-width: $mg-desktop-min) and (max-width: $mg-Bigdesktop-max) {
+    @content;
+  } /*min-width:1921px*/
+}
+
+@mixin for-desktop-1400-to-1920 {
+  @media only screen and (min-width: $mg-desktop-max-up) and (max-width: $mg-desktop-1920) {
+    @content;
+  }
+}
+
+@mixin for-mobile-768-to-1180 {
+  @media only screen and (min-width: $mg-tablet-min) and (max-width: $mg-desktop-1180) {
+    @content;
+  }
+}
+@mixin for-mobile-768-to-1024 {
+  @media only screen and (min-width: $mg-tablet-min) and (max-width: $mg-tablet-max) {
+    @content;
+  }
+}
+@mixin for-mobile-768-to-1023 {
+  @media only screen and (min-width: $mg-tablet-min) and (max-width: $mg-tablet-1023) {
+    @content;
+  }
+}
+@mixin for-mobile-568-to-767 {
+  @media only screen and (min-width: $mg-mobile-mid) and (max-width: $mg-mobile-max) {
+    @content;
+  }
+}
+@mixin for-mobile-600-to-767 {
+  @media only screen and (min-width: $mg-mobile-600) and (max-width: $mg-mobile-max) {
+    @content;
+  }
+}
+@mixin for-mobile-540-to-767 {
+  @media only screen and (min-width: $mg-mobile-540) and (max-width: $mg-mobile-max) {
+    @content;
+  }
+}
+@mixin for-mobile-475-to-767 {
+  @media only screen and (min-width: $mg-mobile-475) and (max-width: $mg-mobile-max) {
+    @content;
+  }
+}
+@mixin text-overflow($width) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: $width;
+}
+
+@mixin flex-center($width) {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+@mixin form-link($width) {
+  align-items: center;
+  border: 0;
+  color: $f-dark-violet;
+  display: flex;
+  font-family: "felix-bold";
+  font-size: 14px;
+  justify-content: center;
+  margin: 0 auto;
+  outline: none;
+  padding: 5px 0 20px 0;
+  text-align: $left;
+  text-decoration: underline;
+}
+
+@mixin flex($display, $align, $direction, $justify) {
+  display: $display;
+  align-items: $align;
+  flex-direction: $direction;
+  justify-content: $justify;
+}
+
+@mixin outline-primary($width) {
+  background: $white;
+  border-radius: 6px;
+  border: 2px solid $f-dark-violet;
+  color: $f-dark-violet;
+  cursor: pointer;
+  font-family: "felix-semibold";
+  font-size: $f-21;
+  height: 50px;
+  outline: none;
+  padding: 0;
+  transition: all 0.3s ease-in;
+  &:focus {
+    background-color: rgba(83, 43, 159, 0.15);
+  }
+  @include for-mobile-max {
+    font-size: $f-16;
+    height: 48px;
+    width: 100%;
+  }
+}
+@mixin contestBox {
+  .BeginnerWrapper {
+    .caption {
+      color: $f-color-blue;
+    }
+    .contestJoinBtn {
+      background: $f-color-blue;
+    }
+  }
+  .BronzeWrapper {
+    .caption {
+      color: $bronze;
+    }
+    .contestJoinBtn {
+      background: $bronze;
+    }
+  }
+  .SilverWrapper {
+    .caption {
+      color: $silver;
+    }
+    .contestJoinBtn {
+      background: $silver;
+    }
+  }
+  .GoldWrapper {
+    .caption {
+      color: $gold;
+    }
+    .contestJoinBtn {
+      background: $yellow;
+    }
+  }
+}

@@ -1,0 +1,254 @@
+@import "variable.scss";
+@import "mixins.scss";
+
+/* font family open Sans */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
+@font-face {
+  font-family: $font-openSans;
+  font-style: normal;
+  src: local("Open Sans Regular"), local("OpenSans-Regular"),
+    url("../layouts/fonts/opensans/open-sans-v15-latin-regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Open Sans Bold";
+  font-style: normal;
+  font-weight: $fontWeightBold;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"),
+    url("../layouts/fonts/opensans/open-sans-v15-latin-700.woff") format("woff");
+}
+/*end*/
+
+/* font family  Fatura*/
+@font-face {
+  font-family: "futura";
+  src: url("../layouts/fonts/futura/futura.eot");
+  src: url("../layouts/fonts/futura/futura.woff") format("woff"),
+    url("../layouts/fonts/futura/futura.ttf") format("truetype"),
+    url("../layouts/fonts/futura/futura.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Futura-Bold";
+  src: url("../layouts/fonts/futuraBold/Futura-Bold.eot");
+  src: url("../layouts/fonts/futuraBold/Futura-Bold.woff") format("woff"),
+    url("../layouts/fonts/futuraBold/Futura-Bold.ttf") format("truetype"),
+    url("../layouts/fonts/futuraBold/Futura-Bold.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "futura-Medium";
+  src: url("../layouts/fonts/futuraMedium/futura-Medium.eot");
+  src: url("../layouts/fonts/futuraMedium/futura-Medium.woff") format("woff"),
+    url("../layouts/fonts/futuraMedium/futura-Medium.ttf") format("truetype"),
+    url("../layouts/fonts/futuraMedium/futura-Medium.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/*end*/
+
+/*font family face*/
+@font-face {
+  font-family: "roboto-regular";
+  src: url("../layouts/fonts/robotoRegular/Roboto-Regular.eot");
+  src: url("../layouts/fonts/robotoRegular/Roboto-Regular.eot?#iefix") format("embedded-opentype"),
+    url("../layouts/fonts/robotoRegular/Roboto-Regular.woff") format("woff"),
+    url("../layouts/fonts/robotoRegular/Roboto-Regular.ttf") format("truetype"),
+    url("../layouts/fonts/robotoRegular/Roboto-Regular.svg#roboto-regular") format("svg");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "roboto-medium";
+  src: url("../layouts/fonts/robotoMedium/roboto-medium.eot");
+  src: url("../layouts/fonts/robotoMedium/roboto-medium.eot?#iefix") format("embedded-opentype"),
+    url("../layouts/fonts/robotoMedium/roboto-medium.woff") format("woff"),
+    url("../layouts/fonts/robotoMedium/roboto-medium.ttf") format("truetype"),
+    url("../layouts/fonts/robotoMedium/roboto-medium.svg#roboto-medium") format("svg");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "roboto-bold";
+  src: url("../layouts/fonts/robotoBold/Roboto-Bold.eot");
+  src: url("../layouts/fonts/robotoBold/Roboto-Bold.eot?#iefix") format("embedded-opentype"),
+    url("../layouts/fonts/robotoBold/Roboto-Bold.woff") format("woff"),
+    url("../layouts/fonts/robotoBold/Roboto-Bold.ttf") format("truetype"),
+    url("../layouts/fonts/robotoBold/Roboto-Bold.svg#roboto-medium") format("svg");
+  font-style: normal;
+  font-weight: normal;
+}
+/*end*/
+
+body {
+  background: $f-bg-white;
+  color: $f-color-light-black;
+  font-family: $font-openSans;
+  font-size: $f-14;
+  line-height: normal;
+}
+
+/* Show it is fixed to the top */
+body {
+  // min-height: 75rem;
+  // padding-top: 6rem;
+  @include for-mobile-992-max {
+    padding-top: 9.5rem;
+  }
+  @include for-mobile-max {
+    padding-top: 2.9rem;
+  }
+}
+
+h1 {
+  font-size: $f-24;
+}
+h2 {
+  font-size: $f-22;
+}
+h3 {
+  font-size: $f-20;
+}
+ul {
+  li {
+    list-style: none;
+  }
+}
+ul,
+li {
+  list-style: none;
+}
+.mb130 {
+  margin-bottom: $mbtom130;
+}
+.self-center {
+  align-self: $center;
+}
+a {
+  transition: 0.5s;
+  color: $f-color-blue;
+  &:hover {
+    outline: none;
+    text-decoration: none;
+  }
+  &:active {
+    outline: none;
+    text-decoration: none;
+  }
+  &:focus {
+    outline: none;
+    text-decoration: none;
+  }
+}
+// img{
+//   image-rendering: pixelated;
+// }
+.container {
+  max-width: 1000px;
+}
+.nav-link,
+.btn,
+a,
+button {
+  outline: none;
+}
+.btn.focus,
+.btn:focus,
+button:focus {
+  box-shadow: none;
+  outline: none;
+}
+.modal {
+  padding: 0px !important;
+}
+@include for-mobile-768-down {
+  .container {
+    max-width: 720px;
+  }
+}
+@include for-mobile-max {
+  .container {
+    max-width: 100%;
+  }
+}
+.noMargin {
+  margin: 0 !important;
+}
+.stockMoreDetailsModal {
+  .modal-dialog {
+    margin: 1.75rem auto;
+    max-width: 1002px;
+    @include for-mobile-768-down {
+      width: 100%;
+    }
+  }
+}
+.hideTab {
+  display: block;
+  @include for-tablet-min {
+    display: none;
+  }
+}
+.showTab {
+  display: none;
+  @include for-tablet-min {
+    display: block;
+  }
+}
+.hideMobileTab {
+  display: block;
+  @include for-mobile-992-max {
+    display: none;
+  }
+}
+.showMobileTab {
+  display: none;
+  @include for-mobile-992-max {
+    display: block;
+  }
+}
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+.button {
+  @include font($f-size-16, $white, $font-openSans, $font6);
+  background-color: $f-color-blue;
+  border-radius: 4px;
+  margin: 16px 0;
+  padding: 16px 0;
+  width: 100%;
+}
+.show-more {
+  height: auto;
+}
+.show-less {
+  height: 270px;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.seeMoreWrapper {
+  padding: 10px 0;
+  width: 100%;
+  .see-more-btn {
+    @include font($f-16, $f-color-blue, $font-openSans, $font6);
+  }
+}
+.pos-relative {
+  position: relative;
+}
+.emptyWrap {
+  height: 29px;
+}
+.pointer {
+  cursor: pointer;
+}

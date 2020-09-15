@@ -1,0 +1,35 @@
+@import "../../../stylesheet/base.scss";
+.cashFlowChartWrapper {
+  .cashFlowChart {
+    margin: 16px 0;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: solid 1px #efefef;
+    background-color: #ffffff;
+    @include for-mobile-max {
+      border-bottom: 1px solid $bg-color-gray2;
+    }
+  }
+  .pill-nav {
+    padding: 10px 20px 10px;
+    width: 100%;
+    .pill-nav-button {
+      background: $tranpr;
+      border-radius: 8px;
+      border: none;
+      display: inline-block;
+      margin: 0 10px;
+      outline: none;
+      padding: 5px;
+      text-align: $center;
+      transition: all 0.3s ease-in;
+      @include font($f-14, $f-color-light-blue, $font-openSans, $font6);
+    }
+    .pill-nav-button.active {
+      background-color: $bg-color-gray;
+      color: $f-color-dark-blue;
+      padding: 5px 22px;
+    }
+  }
+}
