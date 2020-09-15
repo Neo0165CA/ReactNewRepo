@@ -32,6 +32,11 @@ const SearchBar = (props) => {
     setInput(value);
   };
 
+  const setScrollforUl = counter => {
+    let scrollUL = myRef["current"].children[count].offsetHeight * (counter);
+    myRef["current"].scrollTo(0, scrollUL);
+  }
+
   const handleKeyDownHandler = (e)=>{
    
     var counter = 0;
@@ -41,8 +46,7 @@ const SearchBar = (props) => {
       );
 
       counter =  tickerList.length === 1 ? tickerList.length + count : count - 1; 
-      let scrollUL = myRef["current"].children[count].offsetHeight * (counter);
-        myRef["current"].scrollTo(0, scrollUL);
+      setScrollforUl(counter);
 
     }else if (e.keyCode === 40 && tickerList.length){
       setCount(prevState =>
@@ -50,8 +54,7 @@ const SearchBar = (props) => {
       );
       
       counter =  tickerList.length === 1 ? count : count + 1;
-      let scrollUL = myRef["current"].children[count].offsetHeight * (counter);
-        myRef["current"].scrollTo(0, scrollUL); 
+      setScrollforUl(counter);
 
     }
 
