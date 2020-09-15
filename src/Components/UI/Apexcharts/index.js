@@ -80,9 +80,10 @@ const CashFlowChart = props => {
       setCashFlowData(uiCashChartData);
     }
   };
+
   useEffect(() => {
     fetchIncomeData();
-  }, [index]);
+  });
 
   const incomeObj = {
     1: "netcashfromoperatingactivities",

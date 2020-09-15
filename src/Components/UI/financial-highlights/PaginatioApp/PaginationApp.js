@@ -3,7 +3,7 @@ import Pagination from "../Pagination/index";
 import axios from "axios";
 import styled from "styled-components";
 import _ from "lodash";
-import { tickerParam, cikParam } from "../../../Utility/constant";
+import { tickerParam } from "../../../Utility/constant";
 import { url } from "../../../Utility/config";
 
 const Styles = styled.div`
@@ -107,11 +107,12 @@ const Paginationapp = () => {
 
   useEffect(() => {
     fetchFinanicalHighlights();
-  }, [tickerParam, cikParam]);
+  },[]);
 
+  // let result = errorLog ? 'Network Error' : ;
   return (
     <Styles>
-      <Pagination columns={columnsData} data={paginationData} />
+     <Pagination columns={columnsData} data={paginationData} />
     </Styles>
   );
 };

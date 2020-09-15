@@ -51,7 +51,6 @@ const FinancialHighLights = () => {
     });
 
     const dataOne = [];
-    const dataOne2 = [];
     const existingArrElements = [
       "primary_security_ticker",
       "fiscal_period",

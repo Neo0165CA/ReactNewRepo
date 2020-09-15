@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { withRouter, Redirect, NavLink } from "react-router-dom";
+import { withRouter, NavLink } from "react-router-dom";
 import axios from "axios";
 import _ from "lodash";
 import "./index.modules.scss";
@@ -31,6 +31,39 @@ const SearchBar = (props) => {
     }
     setInput(value);
   };
+
+  const handleKeyDownHandler = (e)=>{
+   
+    var counter = 0;
+    if (e.keyCode === 38 && tickerList.length) {
+      setCount(prevState =>
+        prevState > 0 ? prevState - 1 : tickerList.length-1
+      );
+
+      counter =  tickerList.length === 1 ? tickerList.length + count : count - 1; 
+      let scrollUL = myRef["current"].children[count].offsetHeight * (counter);
+        myRef["current"].scrollTo(0, scrollUL);
+
+    }else if (e.keyCode === 40 && tickerList.length){
+      setCount(prevState =>
+        prevState < tickerList.length-1 ? prevState + 1 : 0
+      );
+      
+      counter =  tickerList.length === 1 ? count : count + 1;
+      let scrollUL = myRef["current"].children[count].offsetHeight * (counter);
+        myRef["current"].scrollTo(0, scrollUL); 
+
+    }
+
+    
+  }
+
+  useEffect(()=>{
+    window.addEventListener("keydown", handleKeyDownHandler);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDownHandler);
+    };
+  })
 
   const delayedGetList = _.debounce(searchTickers, 500);
 

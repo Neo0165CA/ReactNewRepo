@@ -167,7 +167,7 @@ const Signupform = (props) => {
                   required=""
                 />
                 <div className="errorMsg">{passwordErr}</div>
-                {/* <div className="errorMsg-exist">{passwordErr}</div> */}
+                <div className="errorMsg-exist">{netError}</div>
               </div>
               <div className="form-group">
                 <button
