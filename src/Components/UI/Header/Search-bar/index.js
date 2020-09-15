@@ -39,7 +39,7 @@ const SearchBar = (props) => {
 
   const handleKeyDownHandler = (e)=>{
    
-    var counter = 0;
+    let counter = 0;
     if (e.keyCode === 38 && tickerList.length) {
       setCount(prevState =>
         prevState > 0 ? prevState - 1 : tickerList.length-1
